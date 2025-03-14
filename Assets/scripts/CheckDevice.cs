@@ -44,6 +44,7 @@ public class CheckDevice : MonoBehaviour
                 Debug.Log("Not a mobile device");
             }
         }
+        //test
         else
         {
             foreach (Canvas canvas in canvasList)
@@ -52,7 +53,17 @@ public class CheckDevice : MonoBehaviour
                 int child = canvas.transform.childCount;
                 for (int i = 0; i < child; i++)
                 {
-                    canvas.transform.GetChild(i).localScale = canvas.transform.GetChild(i).localScale * 100;
+                    if (canvas.transform.GetChild(i).CompareTag("Panel"))
+                    {
+                        canvas.transform.GetChild(i).GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 1);
+                        canvas.transform.GetChild(i).GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 1);
+                    }
+                    else
+                    {
+                        canvas.transform.GetChild(i).GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 100);
+                        canvas.transform.GetChild(i).GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 100);
+                    }
+                    canvas.transform.GetChild(i).GetComponent<RectTransform>().anchoredPosition = canvas.transform.GetChild(i).GetComponent<RectTransform>().anchoredPosition;
                 }
                 Debug.Log("other");
             }
