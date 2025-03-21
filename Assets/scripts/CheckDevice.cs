@@ -53,6 +53,7 @@ public class CheckDevice : MonoBehaviour
             {
                 //vrPlay.SetActive(false);
                 //canvas.transform.SetParent(mobilePlay.transform);
+                //mobilePlay.SetActive(true);
                 canvas.renderMode = RenderMode.ScreenSpaceOverlay;
                 canvas.GetComponent<CanvasScaler>().uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
                 int child = canvas.transform.childCount;
