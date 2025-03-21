@@ -1,13 +1,15 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.XR.OpenVR;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.XR;
 using UnityEngine.XR.Management;
 
 public class CheckDevice : MonoBehaviour
 {
     List<Canvas> canvasList = new List<Canvas>();
+    public GameObject mobilePlay;
+    public Camera mobileCamera;
+    public GameObject vrPlay;
     private void Awake()
     {
         CheckForDevice();
@@ -49,31 +51,48 @@ public class CheckDevice : MonoBehaviour
         {
             foreach (Canvas canvas in canvasList)
             {
+                //vrPlay.SetActive(false);
+                //canvas.transform.SetParent(mobilePlay.transform);
                 canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+                canvas.GetComponent<CanvasScaler>().uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
                 int child = canvas.transform.childCount;
-                if (canvas.name == "leftArmCanvas")
+                if (canvas.CompareTag("leftArmCanvas"))
                 {
                     for (int i = 0; i < child; i++)
                     {
-                        canvas.transform.GetChild(i).GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 100);
-                        canvas.transform.GetChild(i).GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 100);
-                    }
-                }
-                else if (canvas.name == "rightArmCanvas")
-                {
-                    for (int i = 0; i < child; i++)
-                    {
-                        if (canvas.transform.GetChild(i).CompareTag("Panel"))
+                        RectTransform rt = canvas.transform.GetChild(i).GetComponent<RectTransform>();
+                        if (canvas.transform.GetChild(i).CompareTag("Button"))
                         {
-                            canvas.transform.GetChild(i).GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 1);
-                            canvas.transform.GetChild(i).GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 1);
+                            rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 50);
+                            rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 50);
+                            rt.localPosition = new Vector3(0, i * -25, 0);
+
                         }
                         else
                         {
-                            canvas.transform.GetChild(i).GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 100);
-                            canvas.transform.GetChild(i).GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 100);
+                            rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 200);
+                            rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 50);
+                            rt.localPosition = new Vector3(100, -25, 0);
                         }
-                        canvas.transform.GetChild(i).GetComponent<RectTransform>().anchoredPosition = canvas.transform.GetChild(i).GetComponent<RectTransform>().anchoredPosition;
+                        
+                    }
+                }
+                else if (canvas.CompareTag("rightArmCanvas"))
+                {
+                    for (int i = 0; i < child; i++)
+                    {
+                        RectTransform rt = canvas.transform.GetChild(i).GetComponent<RectTransform>();
+                        if (canvas.transform.GetChild(i).CompareTag("Panel"))
+                        {
+                            rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 1);
+                            rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 1);
+                        }
+                        else
+                        {
+                            rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 50);
+                            rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 50);
+                            rt.localPosition = new Vector3(-25, i * -25, 0);
+                        }
                     }
                 }
                 else
@@ -90,7 +109,7 @@ public class CheckDevice : MonoBehaviour
                             canvas.transform.GetChild(i).GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 100);
                             canvas.transform.GetChild(i).GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 100);
                         }
-                        canvas.transform.GetChild(i).GetComponent<RectTransform>().anchoredPosition = canvas.transform.GetChild(i).GetComponent<RectTransform>().anchoredPosition;
+                        
                     }
                 }
                 Debug.Log("other");

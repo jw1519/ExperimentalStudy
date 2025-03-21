@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIButtons : MonoBehaviour
 {
@@ -9,6 +10,19 @@ public class UIButtons : MonoBehaviour
 
     bool inventoryOpen = false;
     bool pausePanelOpen = false;
+
+    public Slider healthbar;
+    public Slider defencebar;
+    public int defence = 10;
+    public int health = 10;
+
+    private void Awake()
+    {
+        healthbar.maxValue = health;
+        healthbar.value = health;
+        defencebar.maxValue = defence;
+        defencebar.value = defence;
+    }
     public void Inventory()
     {
         if (inventoryOpen)
@@ -33,6 +47,27 @@ public class UIButtons : MonoBehaviour
         {
             pausePanel.SetActive(true);
             pausePanelOpen = true;
+        }
+    }
+    public void TakeAwayHealth()
+    {
+        if (defence > 0)
+        {
+            defence--;
+            defencebar.value = defence;
+        }
+        else
+        {
+            health--;
+            healthbar.value = health;
+        }
+    }
+    public void AddHealth()
+    {
+        if (health < 10)
+        {
+            health++;
+            healthbar.value = health;
         }
     }
 }
