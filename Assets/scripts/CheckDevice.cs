@@ -87,6 +87,7 @@ public class CheckDevice : MonoBehaviour
                         {
                             rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 1);
                             rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 1);
+                            rt.gameObject.SetActive(false);
                         }
                         else
                         {
