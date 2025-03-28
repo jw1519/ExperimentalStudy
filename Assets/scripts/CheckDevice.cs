@@ -59,7 +59,6 @@ public class CheckDevice : MonoBehaviour
                             rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 50);
                             rt.localPosition = new Vector3(100, -25, 0);
                         }
-                        
                     }
                 }
                 else if (canvas.CompareTag("rightArmCanvas"))
