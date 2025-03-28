@@ -13,15 +13,12 @@ public class UIButtons : MonoBehaviour
 
     public Slider healthbar;
     public Slider defencebar;
-    public int defence = 10;
     public int health = 10;
 
     private void Awake()
     {
         healthbar.maxValue = health;
         healthbar.value = health;
-        defencebar.maxValue = defence;
-        defencebar.value = defence;
     }
     public void Inventory()
     {
@@ -51,16 +48,8 @@ public class UIButtons : MonoBehaviour
     }
     public void TakeAwayHealth()
     {
-        if (defence > 0)
-        {
-            defence--;
-            defencebar.value = defence;
-        }
-        else
-        {
-            health--;
-            healthbar.value = health;
-        }
+        health--;
+        healthbar.value = health;
     }
     public void AddHealth()
     {
