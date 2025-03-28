@@ -7,7 +7,7 @@ public class CheckDevice : MonoBehaviour
 {
     List<Canvas> canvasList = new List<Canvas>();
     public GameObject mobilePlay;
-    public Camera Camera;
+    Camera Camera;
     public GameObject vrPlay;
     private void Awake()
     {
@@ -16,6 +16,7 @@ public class CheckDevice : MonoBehaviour
     public void AddCanvas(Canvas canvas)
     {
         canvasList.Add(canvas);
+        Camera = Camera.main;
     }
     public void CheckForDevice()
     {
@@ -34,12 +35,11 @@ public class CheckDevice : MonoBehaviour
         {
             foreach (Canvas canvas in canvasList)
             {
-                Camera = Camera.main;
-                //vrPlay.SetActive(false);
-                //canvas.transform.SetParent(mobilePlay.transform);
-                //Camera.transform.SetParent(mobilePlay.transform);
-                //mobilePlay.SetActive(true);
+                
+                mobilePlay.SetActive(true);
+                Camera.transform.SetParent(mobilePlay.transform);
                 canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+
                 canvas.GetComponent<CanvasScaler>().uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
                 int child = canvas.transform.childCount;
                 if (canvas.CompareTag("leftArmCanvas"))
@@ -102,6 +102,8 @@ public class CheckDevice : MonoBehaviour
                         
                     }
                 }
+                canvas.transform.SetParent(mobilePlay.transform);
+                //vrPlay.SetActive(false);
                 Debug.Log("other");
             }
         }
