@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.Management;
@@ -33,6 +34,8 @@ public class CheckDevice : MonoBehaviour
         //its mobile
         else
         {
+            // disables the controllers
+            FindAnyObjectByType<XROrigin>().gameObject.SetActive(false);
             foreach (Canvas canvas in canvasList)
             {
                 
