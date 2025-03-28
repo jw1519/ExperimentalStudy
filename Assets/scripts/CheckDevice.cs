@@ -8,7 +8,7 @@ public class CheckDevice : MonoBehaviour
 {
     List<Canvas> canvasList = new List<Canvas>();
     public GameObject mobilePlay;
-    public Camera mobileCamera;
+    public Camera Camera;
     public GameObject vrPlay;
     private void Awake()
     {
@@ -37,6 +37,7 @@ public class CheckDevice : MonoBehaviour
             {
                 //vrPlay.SetActive(false);
                 //canvas.transform.SetParent(mobilePlay.transform);
+                //Camera.transform.SetParent(mobilePlay.transform);
                 //mobilePlay.SetActive(true);
                 canvas.renderMode = RenderMode.ScreenSpaceOverlay;
                 canvas.GetComponent<CanvasScaler>().uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
