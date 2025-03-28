@@ -30,7 +30,7 @@ public class CheckDevice : MonoBehaviour
                 Debug.Log("VR");
             }
         }
-        //test
+        //its mobile
         else
         {
             foreach (Canvas canvas in canvasList)
