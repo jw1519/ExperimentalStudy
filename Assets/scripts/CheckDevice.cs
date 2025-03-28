@@ -20,30 +20,14 @@ public class CheckDevice : MonoBehaviour
     }
     public void CheckForDevice()
     {
-        if (Application.platform == RuntimePlatform.Android)
-        {
-            foreach (Canvas canvas in canvasList)
-            {
-                canvas.renderMode = RenderMode.ScreenSpaceCamera;
-                Debug.Log("mobile device");
-            }
-        }
-        else if (Application.platform == RuntimePlatform.IPhonePlayer)
-        {
-            foreach (Canvas canvas in canvasList)
-            {
-                canvas.renderMode = RenderMode.ScreenSpaceCamera;
-                Debug.Log("mobile device");
-            }
-        }
         //checks if vr headset is connected
-        else if (XRGeneralSettings.Instance.Manager.activeLoader != null)
+        if (XRGeneralSettings.Instance.Manager.activeLoader != null)
         {
             foreach (Canvas canvas in canvasList)
             {
                 canvas.renderMode = RenderMode.WorldSpace;
                 canvas.worldCamera = Camera.main;
-                Debug.Log("Not a mobile device");
+                Debug.Log("VR");
             }
         }
         //test
@@ -66,8 +50,7 @@ public class CheckDevice : MonoBehaviour
                         {
                             rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 50);
                             rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 50);
-                            rt.localPosition = new Vector3(0, i * -25, 0);
-
+                            rt.localPosition = new Vector3(25, 350 - 50 * i, 0);
                         }
                         else
                         {
