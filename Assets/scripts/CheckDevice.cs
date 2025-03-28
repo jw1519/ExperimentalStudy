@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.XR;
 using UnityEngine.XR.Management;
 
 public class CheckDevice : MonoBehaviour
