@@ -35,6 +35,7 @@ public class CheckDevice : MonoBehaviour
         {
             foreach (Canvas canvas in canvasList)
             {
+                //Camera = Camera.main;
                 //vrPlay.SetActive(false);
                 //canvas.transform.SetParent(mobilePlay.transform);
                 //Camera.transform.SetParent(mobilePlay.transform);
