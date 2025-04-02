@@ -23,7 +23,7 @@ public class CheckDevice : MonoBehaviour
     public void CheckForDevice()
     {
         //checks if vr headset is connected
-        if (!XRGeneralSettings.Instance.Manager.activeLoader != null) // change back wehen test Mobile
+        if (XRGeneralSettings.Instance.Manager.activeLoader != null) // change back wehen test Mobile
         {
             foreach (Canvas canvas in canvasList)
             {
@@ -55,7 +55,7 @@ public class CheckDevice : MonoBehaviour
                         {
                             rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 50);
                             rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 50);
-                            rt.localPosition = new Vector3(25, 350 - 50 * i, 0);
+                            rt.localPosition = new Vector3(-720, -100 - (i * 50), 0);
                         }
                         else if (canvas.transform.GetChild(i).CompareTag("Panel"))
                         {
